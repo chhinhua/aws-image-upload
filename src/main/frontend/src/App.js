@@ -4,28 +4,43 @@ import './App.css';
 import axios from 'axios';
 
 const UserProfiles = () => {
-  const fetchUserProfiles = () => {
-    axios.get("http://localhost:8181/api/v1/user-profile").then(res => {
-      console.log(res);
-    });
-  };
+    const fetchUserProfiles = () => {
+        axios.get("http://localhost:8181/api/v1/user-profile").then(res => {
+            console.log(res);
+        });
+    };
 
-  useEffect(() => {
-    fetchUserProfiles();
-  }, []);
+    useEffect(() => {
+        fetchUserProfiles();
+    }, []);
 
-  return <h1>Hello</h1>
+    return <h1>Hello</h1>
+};
+
+const UserProfile = () => {
+    const fetchUserProfiles = () => {
+        axios.get("http://localhost:8181/api/v1/user-profile").then(res => {
+            console.log(res);
+        });
+    };
+
+    useEffect(() => {
+        fetchUserProfiles();
+    }, []);
+
+    return <h1>Hello</h1>
 };
 
 function App() {
-  return (
-    <div className="App">
-        <UserProfiles/>
-    </div>
-  );
+    return (
+        <div className="App">
+            <UserProfiles/>
+        </div>
+    );
 }
 
 export default App;
+
 
 
 
