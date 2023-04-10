@@ -12,7 +12,6 @@ public class UserProfileService {
 
     private final UserProfileDataAccessService userProfileDataAccessService;
 
-    @Autowired
     public UserProfileService(UserProfileDataAccessService userProfileDataAccessService) {
         this.userProfileDataAccessService = userProfileDataAccessService;
     }

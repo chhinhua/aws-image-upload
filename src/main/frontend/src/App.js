@@ -1,48 +1,65 @@
-import React, {useState, useEffect} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import axios from 'axios';
+import React, { useState, useEffect, useCallback } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import axios from "axios";
+import { useDropzone } from "react-dropzone";
 
 const UserProfiles = () => {
-    const fetchUserProfiles = () => {
-        axios.get("http://localhost:8181/api/v1/user-profile").then(res => {
-            console.log(res);
-        });
-    };
+  const [UserProfiles, setUserProfiles] = useState([]);
 
-    useEffect(() => {
-        fetchUserProfiles();
-    }, []);
+  const fetchUserProfiles = () => {
+    axios.get("http://localhost:8080/api/v1/user-profile").then((res) => {
+      console.log(res);
+      setUserProfiles(res.data);
+    });
+  };
 
-    return <h1>Hello</h1>
+  useEffect(() => {
+    fetchUserProfiles();
+  }, []);
+
+  return UserProfiles.map((userProfile, index) => {
+    return (
+      <div key={index}>
+        <br />
+        <br />
+        <h1>{userProfile.username}</h1>
+        <p>{userProfile.userProfileId}</p>
+        <Dropzone />
+        <br />
+        <br />
+      </div>
+    );
+  });
 };
 
-const UserProfile = () => {
-    const fetchUserProfiles = () => {
-        axios.get("http://localhost:8181/api/v1/user-profile").then(res => {
-            console.log(res);
-        });
-    };
+function Dropzone() {
+  const onDrop = useCallback((acceptedFiles) => {
+    const file = acceptedFiles[0];
+    console.log(file)
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
-    useEffect(() => {
-        fetchUserProfiles();
-    }, []);
-
-    return <h1>Hello</h1>
-};
+  return (
+    <div {...getRootProps()}>
+      <input {...getInputProps()} />
+      {isDragActive ? (
+        <p>Drop the image here ...</p>
+      ) : (
+        <p>
+          Drag 'n' drop profile image here, or click to select profile image
+        </p>
+      )}
+    </div>
+  );
+}
 
 function App() {
-    return (
-        <div className="App">
-            <UserProfiles/>
-        </div>
-    );
+  return (
+    <div className="App">
+      <UserProfiles />
+    </div>
+  );
 }
 
 export default App;
-
-
-
-
-
-

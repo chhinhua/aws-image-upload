@@ -2,7 +2,7 @@ package com.amigoscode.awsimageupload.bucket;
 
 public enum BucketName {
 
-    PROFILE_IMAGE("");
+    PROFILE_IMAGE("chhinhua-image-upload-123");
 
     private final String bucketName;
 
