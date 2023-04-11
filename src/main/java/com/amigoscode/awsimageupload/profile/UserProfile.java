@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 @Getter
@@ -17,6 +18,10 @@ public class UserProfile {
     private UUID userProfileId;
     private String username;
     private String userProfileImageLink; //S3 link
+
+    public Optional<String> getUserProfileImageLink() {
+        return Optional.ofNullable(userProfileImageLink);
+    }
 
     @Override
     public boolean equals(Object o) {
